@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HireLoop Multi-Tenant Job Platform</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar" aria-label="Workspace controls">
+      <div class="brand">
+        <span class="brand-mark">HL</span>
+        <div>
+          <p>HireLoop</p>
+          <strong>Tenant Console</strong>
+        </div>
+      </div>
+
+      <label>
+        Tenant
+        <select id="tenantSelect"></select>
+      </label>
+
+      <label>
+        Role
+        <select id="roleSelect">
+          <option value="admin">Admin</option>
+          <option value="recruiter">Recruiter</option>
+          <option value="candidate">Candidate</option>
+        </select>
+      </label>
+
+      <nav class="nav-tabs" aria-label="Main sections">
+        <button class="active" data-view="dashboard" type="button">Dashboard</button>
+        <button data-view="jobs" type="button">Jobs</button>
+        <button data-view="applications" type="button">Applications</button>
+        <button data-view="talent" type="button">Talent</button>
+      </nav>
+
+      <button id="seedBtn" class="ghost" type="button">Reset demo data</button>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="workspaceLabel">Workspace</p>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="live-pill" aria-live="polite">
+          <span></span>
+          Real-time sync on
+        </div>
+      </header>
+
+      <section id="dashboardView" class="view active"></section>
+      <section id="jobsView" class="view"></section>
+      <section id="applicationsView" class="view"></section>
+      <section id="talentView" class="view"></section>
+    </section>
+
+    <aside class="activity-panel">
+      <div class="section-heading">
+        <h2>Live Activity</h2>
+        <p>Synced across tabs</p>
+      </div>
+      <div id="activityFeed" class="activity-feed"></div>
+    </aside>
+  </main>
+
+  <template id="jobFormTemplate">
+    <form class="form-grid" id="jobForm">
+      <label>Title<input name="title" required maxlength="80" placeholder="Senior Frontend Engineer"></label>
+      <label>Department<input name="department" required maxlength="60" placeholder="Product Engineering"></label>
+      <label>Location<input name="location" required maxlength="80" placeholder="Remote / Bengaluru"></label>
+      <label>Type
+        <select name="type">
+          <option>Full-time</option>
+          <option>Contract</option>
+          <option>Internship</option>
+        </select>
+      </label>
+      <label>Salary<input name="salary" required maxlength="40" placeholder="$120k - $150k"></label>
+      <label>Status
+        <select name="status">
+          <option>Open</option>
+          <option>Paused</option>
+          <option>Closed</option>
+        </select>
+      </label>
+      <label class="wide">Description<textarea name="description" required rows="3" placeholder="What will this person own?"></textarea></label>
+      <button class="primary" type="submit">Publish job</button>
+    </form>
+  </template>
+
+  <script src="src/app.js"></script>
+</body>
+</html>
